@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import {
   Grid,
   TextField,
@@ -17,6 +18,7 @@ import { useSnackbar } from "notistack";
 const steps = ['Personal Information', 'Additional Details'];
 
 const SignUp = () => {
+    const navigate = useNavigate(); 
     const { enqueueSnackbar } = useSnackbar();
   const [step, setStep] = useState(0);  // 0 for step 1, 1 for step 2
   const [formData, setFormData] = useState({
@@ -59,6 +61,7 @@ const SignUp = () => {
           });
     
           enqueueSnackbar("Sign up successful!", { variant: "success" });
+          navigate('/login');
     }catch(error){
         console.error("There was an error during the registration:", error);
       // Show error message
